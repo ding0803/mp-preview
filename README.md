@@ -46,19 +46,16 @@
 插件界面目前支持：
 - 简体中文
 
-## 支持作者
-如果这个插件对你有所帮助，可以考虑请作者喝杯咖啡 ☕：
+## 关于项目
+
+本项目基于 [Yeban8090/mp-preview](https://github.com/Yeban8090/mp-preview) 进行二次开发，在原有功能基础上新增了微信公众号发布功能和自定义主题。
+
+## 支持原作者
+
+如果您觉得原插件对您有帮助，可以考虑支持原作者 ☕：
 
 <div align="center">
   <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-    <div style="text-align: center; margin: 1px;">
-      <strong>微信支付</strong><br/>
-      <img src="src/assets/donate/wechat_pay.png" alt="微信支付" width="180px" style="margin-top: 10px;">
-    </div>
-    <div style="text-align: center; margin: 1px;">
-      <strong>支付宝</strong><br/>
-      <img src="src/assets/donate/alipay.png" alt="支付宝" width="180px" style="margin-top: 10px;">
-    </div>
     <div style="text-align: center; margin: 1px;">
       <strong>Buy Me a Coffee</strong><br/>
       <a href="https://ko-fi.com/bruceyeban" style="margin-top: 10px; display: inline-block;">
@@ -67,8 +64,6 @@
     </div>
   </div>
 </div>
-
-您的支持是我持续改进这个插件的动力！
 
 ## 许可证
 MIT License。查看 [LICENSE](LICENSE) 获取更多信息。
