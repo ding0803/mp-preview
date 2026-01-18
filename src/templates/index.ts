@@ -10,6 +10,10 @@ const yebanTemplate = require('./yeban.json');
 const yebanOrangeTemplate = require('./yeban-orange.json');
 const darkgreenTemplate = require('./darkgreen.json');
 const brownTemplate = require('./brown.json');
+// 新增主题
+const forestTemplate = require('./forest.json');
+const oceanTemplate = require('./ocean.json');
+const sunsetTemplate = require('./sunset.json');
 
 export const templates = {
     default: defaultTemplate,
@@ -23,4 +27,8 @@ export const templates = {
     'yeban-orange': yebanOrangeTemplate,
     darkgreen: darkgreenTemplate,
     brown: brownTemplate,
+    // 新增主题
+    forest: forestTemplate,
+    ocean: oceanTemplate,
+    sunset: sunsetTemplate,
 };

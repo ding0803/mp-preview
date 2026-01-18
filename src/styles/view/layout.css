@@ -7,7 +7,7 @@
 
 /* ===== 工具栏 ===== */
 .mp-toolbar, .mp-bottom-bar {
-    padding: 15px 0;
+    padding: 12px 16px;
     max-width: 580px;
     background: var(--background-secondary);
 }
@@ -20,17 +20,133 @@
 
 .mp-bottom-bar {
     bottom: 0;
-    border-radius: 8px;
-    border-top: 2px solid var(--background-modifier-border);
+    border-radius: 12px;
+    border-top: none;
+    background: linear-gradient(
+        to bottom,
+        var(--background-secondary) 0%,
+        var(--background-primary) 100%
+    );
+    box-shadow:
+        0 -4px 20px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: sticky;
+    margin-top: auto;
+    padding: 12px 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--rgb-accent), 0.08);
+    transition: all 0.3s ease;
+}
+
+.mp-bottom-bar:hover {
+    box-shadow:
+        0 -6px 24px rgba(0, 0, 0, 0.12),
+        0 4px 12px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(var(--rgb-accent), 0.12);
+}
+
+/* 底部居中容器 */
+.mp-bottom-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* 底部装饰线 */
+.mp-bottom-deco {
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(var(--rgb-accent), 0.3) 50%,
+        transparent 100%
+    );
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.mp-bottom-deco-left {
+    margin-right: 4px;
+}
+
+.mp-bottom-deco-right {
+    margin-left: 4px;
+}
+
+.mp-bottom-bar:hover .mp-bottom-deco {
+    opacity: 1;
+    width: 80px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(var(--rgb-accent), 0.5) 50%,
+        transparent 100%
+    );
+}
+
+/* 分隔线 */
+.mp-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--background-modifier-border);
+}
+
+/* ===== 帮助提示 ===== */
+.mp-help-tooltip {
+    position: fixed;
+    left: 50%;
+    bottom: 80px;
+    transform: translateX(-50%) translateY(10px);
+    width: 320px;
+    padding: 16px 20px;
+    background: linear-gradient(
+        135deg,
+        var(--background-primary) 0%,
+        var(--background-secondary) 100%
+    );
+    border: 2px solid rgba(var(--rgb-accent), 0.15);
+    border-radius: 12px;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-normal);
+    display: none;
+    white-space: pre-line;
+    z-index: 1001;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mp-bottom-center {
+    position: relative;
+}
+
+.mp-bottom-center .mp-help-button:hover + .mp-help-tooltip {
+    display: block;
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 /* 控件组布局 */
 .mp-controls-group {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
     width: 100%;
-    justify-content: flex-start;  /* 改为靠左对齐 */
+    justify-content: flex-start;
     flex-wrap: nowrap;
     min-width: 0;
 }
@@ -78,18 +194,153 @@
 .mp-controls-group .mp-help-button {
     width: 36px;
     padding: 0;
-    margin: 0 20px 0 10px;
-    flex: none ;
+    flex: none;
 }
 
-.mp-controls-group .mp-copy-button {
-    background-color: var(--text-accent);
-    color: var(--text-on-accent);
-    border: none;
+/* 底部按钮样式 */
+.mp-bottom-center .mp-help-button {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    flex-shrink: 0;
 }
-.mp-controls-group .mp-copy-button:hover {
+
+.mp-bottom-center .mp-help-button:hover {
+    background: var(--background-modifier-hover);
+    color: var(--text-normal);
+    border-color: rgba(var(--rgb-accent), 0.2);
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 0 4px 12px rgba(var(--rgb-accent), 0.15);
+}
+
+/* 复制和发布按钮样式 */
+.mp-bottom-center .mp-copy-button,
+.mp-bottom-center .mp-publish-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.mp-bottom-center .mp-copy-button::before,
+.mp-bottom-center .mp-publish-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.mp-bottom-center .mp-copy-button:hover::before,
+.mp-bottom-center .mp-publish-button:hover::before {
+    left: 100%;
+}
+
+.mp-bottom-center .mp-button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+}
+
+.mp-bottom-center .mp-button-text {
+    line-height: 1;
+}
+
+/* 复制按钮 */
+.mp-bottom-center .mp-copy-button {
+    background: linear-gradient(
+        135deg,
+        var(--interactive-accent) 0%,
+        color-mix(in srgb, var(--interactive-accent) 90%, black) 100%
+    );
     color: var(--text-on-accent);
-    background-color: var(--text-accent);
+    box-shadow:
+        0 4px 12px rgba(var(--rgb-accent), 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.mp-bottom-center .mp-copy-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 6px 20px rgba(var(--rgb-accent), 0.35),
+        0 2px 8px rgba(var(--rgb-accent), 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.mp-bottom-center .mp-copy-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* 发布按钮 */
+.mp-bottom-center .mp-publish-button {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: #ffffff;
+    box-shadow:
+        0 4px 12px rgba(245, 87, 108, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.mp-bottom-center .mp-publish-button:hover {
+    background: linear-gradient(135deg, #e080eb 0%, #e04a5f 100%);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 6px 20px rgba(245, 87, 108, 0.4),
+        0 2px 8px rgba(245, 87, 108, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.mp-bottom-center .mp-publish-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* 禁用状态 */
+.mp-bottom-center button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    filter: grayscale(0.3);
+}
+
+.mp-bottom-center .mp-copy-button:disabled {
+    background: var(--background-secondary);
+    color: var(--text-muted);
+}
+
+.mp-bottom-center .mp-publish-button:disabled {
+    background: var(--background-secondary);
+    color: var(--text-muted);
+}
+
+.mp-bottom-center .mp-copy-button:disabled::before,
+.mp-bottom-center .mp-publish-button:disabled::before {
+    display: none;
 }
 
 /* ===== 下拉选择器 ===== */
@@ -201,35 +452,6 @@
 .mp-font-size-input {
     width: 30px;
     text-align: center;
-}
-
-/* ===== 帮助提示 ===== */
-.mp-help-tooltip {
-    position: absolute;
-    left: 30px;  
-    bottom: 80px;
-    width: 300px;
-    padding: 12px 16px;
-    background: var(--background-primary);
-    border: 2px solid var(--background-modifier-border);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px var(--background-modifier-box-shadow);
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-normal);
-    display: none;
-    white-space: pre-line;
-    z-index: 1001;  /* 提高层级 */
-    pointer-events: none;  /* 防止tooltip影响鼠标事件 */
-}
-
-/* 修改触发方式 */
-.mp-controls-group .mp-help-button {
-    position: relative;  /* 添加相对定位 */
-}
-
-.mp-help-button:hover + .mp-help-tooltip {
-    display: block;
 }
 
 /* ===== 关于作者弹窗 ===== */
@@ -345,7 +567,7 @@
     letter-spacing: 0.2px;
 }
 
-.mp-about-role, 
+.mp-about-role,
 .mp-about-desc {
     font-size: 14.5px;
     color: var(--text-normal);

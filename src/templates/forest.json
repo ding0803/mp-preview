@@ -1,0 +1,66 @@
+{
+    "id": "forest",
+    "name": "森林主题",
+    "styles": {
+        "container": "",
+        "title": {
+            "h1": {
+                "base": "margin: 32px 0 0; font-size: 2em; letter-spacing: -0.03em; line-height: 1.5; text-align: center;",
+                "content": "font-weight: bold; color: #2d5a27; display: inline-block; padding: 8px 20px; border: 2px solid #2d5a27; border-radius: 8px;",
+                "after": ""
+            },
+            "h2": {
+                "base": "margin: 28px 0 0; font-size: 1.5em; letter-spacing: -0.02em; line-height: 1.5; border-bottom: 2px solid #4a7c42;",
+                "content": "font-weight: bold; color: #2d5a27; display: inline-block; background: #e8f5e0; padding: 4px 12px; border-radius: 4px 4px 0 0;",
+                "after": ""
+            },
+            "h3": {
+                "base": "margin: 24px 0 0; font-size: 1.25em; letter-spacing: -0.01em; line-height: 1.5;",
+                "content": "font-weight: bold; color: #4a7c42; border-left: 4px solid #4a7c42; padding-left: 10px;",
+                "after": ""
+            },
+            "base": {
+                "base": "margin: 20px 0 14px; font-size: 1em; line-height: 1.5;",
+                "content": "font-weight: bold; color: #5a8c52;",
+                "after": ""
+            }
+        },
+        "paragraph": "line-height: 1.8; margin-top: 1em; font-size: 1em; color: #4a4a4a;",
+        "list": {
+            "container": "padding-left: 32px; color: #4a4a4a;",
+            "item": "font-size: 1em; color: #4a4a4a; line-height: 1.8;",
+            "taskList": "list-style: none; font-size: 1em; color: #4a4a4a; line-height: 1.8;"
+        },
+        "code": {
+            "header": {
+            "container": "margin-bottom: 1em; display: flex; gap: 6px;",
+            "dot": "width: 12px; height: 12px; border-radius: 50%;",
+            "colors": [
+              "#ff5f56",
+              "#ffbd2e",
+              "#27c93f"
+            ]
+          },
+          "block": "color: #333; background: #f1f8ed; border-radius: 8px; border: 1px solid #d4e8c8; box-shadow: 0 2px 4px rgba(45,90,39,0.1); margin: 1.2em 0; padding: 1em 1em 1em;  font-size: 14px; line-height: 1.6; white-space: pre-wrap;",
+            "inline": "background: #f1f8ed; padding: 2px 6px; border-radius: 4px; color: #2d5a27; font-size: 14px; border: 1px solid #d4e8c8;"
+        },
+        "quote": "border-left: 4px solid #4a7c42; border-radius: 6px; padding: 12px 16px; background: #f1f8ed; margin: 0.8em 0; color: #2d5a27; font-style: italic; word-wrap: break-word;",
+        "image": "max-width: 100%; height: auto; margin: 1em auto; display: block; border-radius: 8px; box-shadow: 0 4px 12px rgba(45,90,39,0.15);",
+        "link": "color: #4a7c42; text-decoration: none; border-bottom: 1px dashed #4a7c42; transition: all 0.2s ease;",
+        "emphasis": {
+            "strong": "font-weight: bold; color: #2d5a27;",
+            "em": "font-style: italic; color: #4a7c42;",
+            "del": "text-decoration: line-through; color: #888;"
+        },
+        "table": {
+            "container": "width: 100%; margin: 1em 0; border-collapse: collapse; border: 1px solid #d4e8c8;",
+            "header": "background: #e8f5e0; font-weight: bold; color: #2d5a27; border-bottom: 2px solid #4a7c42; font-size: 1em;",
+            "cell": "border: 1px solid #d4e8c8; padding: 8px; color: #4a4a4a; font-size: 1em;"
+        },
+        "hr": "border: none; border-top: 2px dashed #4a7c42; margin: 20px 0;",
+        "footnote": {
+            "ref": "color: #4a7c42; text-decoration: none; font-size: 0.9em;",
+            "backref": "color: #4a7c42; text-decoration: none; font-size: 0.9em;"
+        }
+    }
+}

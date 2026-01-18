@@ -1,0 +1,66 @@
+{
+    "id": "sunset",
+    "name": "落日主题",
+    "styles": {
+        "container": "",
+        "title": {
+            "h1": {
+                "base": "margin: 32px 0 0; font-size: 2em; letter-spacing: -0.03em; line-height: 1.5; text-align: center;",
+                "content": "font-weight: bold; color: #c2410c; background: linear-gradient(90deg, #c2410c 0%, #ea580c 50%, #f97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;",
+                "after": ""
+            },
+            "h2": {
+                "base": "margin: 28px 0 0; font-size: 1.5em; letter-spacing: -0.02em; line-height: 1.5;",
+                "content": "font-weight: bold; color: #ea580c; display: inline-block; border: 2px solid #ea580c; border-radius: 6px; padding: 4px 16px; background: linear-gradient(90deg, #fff7ed 0%, #ffedd5 100%);",
+                "after": ""
+            },
+            "h3": {
+                "base": "margin: 24px 0 0; font-size: 1.25em; letter-spacing: -0.01em; line-height: 1.5;",
+                "content": "font-weight: bold; color: #f97316; border-bottom: 3px solid #fdba74;",
+                "after": ""
+            },
+            "base": {
+                "base": "margin: 20px 0 14px; font-size: 1em; line-height: 1.5;",
+                "content": "font-weight: bold; color: #fb923c;",
+                "after": ""
+            }
+        },
+        "paragraph": "line-height: 1.8; margin-top: 1em; font-size: 1em; color: #4a4a4a;",
+        "list": {
+            "container": "padding-left: 32px; color: #4a4a4a;",
+            "item": "font-size: 1em; color: #4a4a4a; line-height: 1.8;",
+            "taskList": "list-style: none; font-size: 1em; color: #4a4a4a; line-height: 1.8;"
+        },
+        "code": {
+            "header": {
+            "container": "margin-bottom: 1em; display: flex; gap: 6px;",
+            "dot": "width: 12px; height: 12px; border-radius: 50%;",
+            "colors": [
+              "#ff5f56",
+              "#ffbd2e",
+              "#27c93f"
+            ]
+          },
+          "block": "color: #333; background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border-radius: 8px; border: 1px solid #fed7aa; box-shadow: 0 2px 4px rgba(234,88,12,0.1); margin: 1.2em 0; padding: 1em 1em 1em;  font-size: 14px; line-height: 1.6; white-space: pre-wrap;",
+            "inline": "background: #ffedd5; padding: 2px 6px; border-radius: 4px; color: #c2410c; font-size: 14px; border: 1px solid #fed7aa;"
+        },
+        "quote": "border-left: 4px solid #f97316; border-radius: 6px; padding: 12px 16px; background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); margin: 0.8em 0; color: #c2410c; font-style: italic; word-wrap: break-word;",
+        "image": "max-width: 100%; height: auto; margin: 1em auto; display: block; border-radius: 12px; box-shadow: 0 8px 20px rgba(234,88,12,0.2);",
+        "link": "color: #ea580c; text-decoration: none; border-bottom: 2px solid #fdba74; transition: all 0.2s ease;",
+        "emphasis": {
+            "strong": "font-weight: bold; color: #c2410c;",
+            "em": "font-style: italic; color: #ea580c;",
+            "del": "text-decoration: line-through; color: #888;"
+        },
+        "table": {
+            "container": "width: 100%; margin: 1em 0; border-collapse: collapse; border: 1px solid #fed7aa;",
+            "header": "background: linear-gradient(90deg, #ea580c 0%, #f97316 100%); font-weight: bold; color: #ffffff; border-bottom: 2px solid #fb923c; font-size: 1em;",
+            "cell": "border: 1px solid #ffedd5; padding: 8px; color: #4a4a4a; font-size: 1em;"
+        },
+        "hr": "border: none; border-top: 3px solid #fdba74; margin: 20px 0; border-radius: 2px;",
+        "footnote": {
+            "ref": "color: #f97316; text-decoration: none; font-size: 0.9em;",
+            "backref": "color: #f97316; text-decoration: none; font-size: 0.9em;"
+        }
+    }
+}

@@ -2,9 +2,9 @@ import { ItemView, WorkspaceLeaf, MarkdownRenderer, TFile, setIcon } from 'obsid
 import { MPConverter } from './converter';
 import { CopyManager } from './copyManager';
 import type { TemplateManager } from './templateManager';
-import { DonateManager } from './donateManager';
 import type { SettingsManager } from './settings/settings';
 import { BackgroundManager } from './backgroundManager';
+import { PublishModal } from './wechat/publishModal';
 export const VIEW_TYPE_MP = 'mp-preview';
 
 export class MPView extends ItemView {
@@ -14,6 +14,7 @@ export class MPView extends ItemView {
     private isPreviewLocked: boolean = false;
     private lockButton: HTMLButtonElement;
     private copyButton: HTMLButtonElement;
+    private publishButton: HTMLButtonElement;
     private templateManager: TemplateManager;
     private settingsManager: SettingsManager;
     private customTemplateSelect: HTMLElement;
@@ -250,74 +251,78 @@ export class MPView extends ItemView {
 
         // 底部工具栏
         const bottomBar = container.createEl('div', { cls: 'mp-bottom-bar' });
-        // 创建中间控件容器
-        const bottomControlsGroup = bottomBar.createEl('div', { cls: 'mp-controls-group' });
+        const bottomCenter = bottomBar.createEl('div', { cls: 'mp-bottom-center' });
+
+        // 左侧装饰线
+        const leftDeco = bottomCenter.createEl('div', { cls: 'mp-bottom-deco mp-bottom-deco-left' });
+
         // 帮助按钮
-        const helpButton = bottomControlsGroup.createEl('button', {
+        const helpButton = bottomCenter.createEl('button', {
             cls: 'mp-help-button',
-            attr: { 'aria-label': '使用指南' }
+            attr: { 'aria-label': '使用指南', title: '使用指南' }
         });
-        setIcon(helpButton, 'help');
+        setIcon(helpButton, 'help-circle');
+
         // 帮助提示框
-        bottomControlsGroup.createEl('div', {
+        bottomCenter.createEl('div', {
             cls: 'mp-help-tooltip',
             text: `使用指南：
-                1. 选择喜欢的主题模板
-                2. 调整字体和字号
-                3. 实时预览效果
-                4. 点击【复制按钮】即可粘贴到公众号
-                5. 编辑实时查看效果，点🔓关闭实时刷新
-                6. 如果你喜欢这个插件，欢迎关注打赏`
-        });
-
-        
-        
-        // 关于作者按钮
-        const likeButton = bottomControlsGroup.createEl('button', { 
-            cls: 'mp-like-button'
-        });
-        const heartSpan = likeButton.createEl('span', {
-            text: '❤️',
-            attr: { style: 'margin-right: 4px' }
-        });
-        likeButton.createSpan({ text: '关于作者' });
-        
-        likeButton.addEventListener('click', () => {
-            DonateManager.showDonateModal(this.containerEl);
+1. 选择喜欢的主题模板
+2. 调整字体和字号
+3. 实时预览效果
+4. 点击【复制到公众号】即可粘贴到公众号
+5. 编辑实时查看效果，点🔓关闭实时刷新`
         });
 
         // 复制按钮
-        this.copyButton = bottomControlsGroup.createEl('button', { 
-            text: '复制到公众号',
+        this.copyButton = bottomCenter.createEl('button', {
             cls: 'mp-copy-button'
         });
-        //新功能按钮
-        const newButton = bottomControlsGroup.createEl('button', { 
-            text: '敬请期待',
-            cls: 'mp-new-button'
+        const copyIcon = this.copyButton.createEl('span', { cls: 'mp-button-icon' });
+        setIcon(copyIcon, 'copy');
+        this.copyButton.createSpan({ cls: 'mp-button-text', text: '复制到公众号' });
+
+        // 发布到公众号按钮
+        this.publishButton = bottomCenter.createEl('button', {
+            cls: 'mp-publish-button'
         });
+        const publishIcon = this.publishButton.createEl('span', { cls: 'mp-button-icon' });
+        setIcon(publishIcon, 'send');
+        this.publishButton.createSpan({ cls: 'mp-button-text', text: '发布到公众号' });
+
+        // 右侧装饰线
+        const rightDeco = bottomCenter.createEl('div', { cls: 'mp-bottom-deco mp-bottom-deco-right' });
 
         // 添加复制按钮点击事件
         this.copyButton.addEventListener('click', async () => {
             if (this.previewEl) {
+                const btnText = this.copyButton.querySelector('.mp-button-text');
                 this.copyButton.disabled = true;
-                this.copyButton.setText('复制中...');
-                
+                if (btnText) btnText.textContent = '复制中...';
+
                 try {
                     await CopyManager.copyToClipboard(this.previewEl);
-                    this.copyButton.setText('复制成功');
-                    
+                    if (btnText) btnText.textContent = '复制成功';
+
                     setTimeout(() => {
                         this.copyButton.disabled = false;
-                        this.copyButton.setText('复制为公众号格式');
+                        if (btnText) btnText.textContent = '复制到公众号';
                     }, 2000);
                 } catch (error) {
-                    this.copyButton.setText('复制失败');
+                    if (btnText) btnText.textContent = '复制失败';
                     setTimeout(() => {
                         this.copyButton.disabled = false;
-                        this.copyButton.setText('复制为公众号格式');
+                        if (btnText) btnText.textContent = '复制到公众号';
                     }, 2000);
                 }
+            }
+        });
+
+        // 添加发布按钮点击事件
+        this.publishButton.addEventListener('click', () => {
+            if (this.previewEl && this.currentFile) {
+                const accounts = this.settingsManager.getWeChatAccounts();
+                new PublishModal(this.app, this.previewEl, this.currentFile.path, accounts).open();
             }
         });
 

@@ -1,0 +1,66 @@
+{
+    "id": "ocean",
+    "name": "海洋主题",
+    "styles": {
+        "container": "",
+        "title": {
+            "h1": {
+                "base": "margin: 32px 0 0; font-size: 2em; letter-spacing: -0.03em; line-height: 1.5;",
+                "content": "font-weight: bold; color: #0c4a6e; background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;",
+                "after": ""
+            },
+            "h2": {
+                "base": "margin: 28px 0 0; font-size: 1.5em; letter-spacing: -0.02em; line-height: 1.5; border-left: 5px solid #0284c7; padding-left: 15px;",
+                "content": "font-weight: bold; color: #0369a1;",
+                "after": ""
+            },
+            "h3": {
+                "base": "margin: 24px 0 0; font-size: 1.25em; letter-spacing: -0.01em; line-height: 1.5;",
+                "content": "font-weight: bold; color: #0284c7; display: inline-block; border-bottom: 2px solid #7dd3fc;",
+                "after": ""
+            },
+            "base": {
+                "base": "margin: 20px 0 14px; font-size: 1em; line-height: 1.5;",
+                "content": "font-weight: bold; color: #0ea5e9;",
+                "after": ""
+            }
+        },
+        "paragraph": "line-height: 1.8; margin-top: 1em; font-size: 1em; color: #4a4a4a;",
+        "list": {
+            "container": "padding-left: 32px; color: #4a4a4a;",
+            "item": "font-size: 1em; color: #4a4a4a; line-height: 1.8;",
+            "taskList": "list-style: none; font-size: 1em; color: #4a4a4a; line-height: 1.8;"
+        },
+        "code": {
+            "header": {
+            "container": "margin-bottom: 1em; display: flex; gap: 6px;",
+            "dot": "width: 12px; height: 12px; border-radius: 50%;",
+            "colors": [
+              "#ff5f56",
+              "#ffbd2e",
+              "#27c93f"
+            ]
+          },
+          "block": "color: #333; background: #f0f9ff; border-radius: 8px; border: 1px solid #bae6fd; box-shadow: 0 2px 4px rgba(14,165,233,0.1); margin: 1.2em 0; padding: 1em 1em 1em;  font-size: 14px; line-height: 1.6; white-space: pre-wrap;",
+            "inline": "background: #e0f2fe; padding: 2px 6px; border-radius: 4px; color: #0369a1; font-size: 14px; border: 1px solid #bae6fd;"
+        },
+        "quote": "border-left: 4px solid #0ea5e9; border-radius: 6px; padding: 12px 16px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); margin: 0.8em 0; color: #0c4a6e; font-style: italic; word-wrap: break-word;",
+        "image": "max-width: 100%; height: auto; margin: 1em auto; display: block; border-radius: 8px;",
+        "link": "color: #0284c7; text-decoration: none; border-bottom: 1px solid #7dd3fc; transition: all 0.2s ease;",
+        "emphasis": {
+            "strong": "font-weight: bold; color: #0369a1;",
+            "em": "font-style: italic; color: #0ea5e9;",
+            "del": "text-decoration: line-through; color: #888;"
+        },
+        "table": {
+            "container": "width: 100%; margin: 1em 0; border-collapse: collapse; border: 1px solid #bae6fd;",
+            "header": "background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%); font-weight: bold; color: #ffffff; border-bottom: 2px solid #0ea5e9; font-size: 1em;",
+            "cell": "border: 1px solid #e0f2fe; padding: 8px; color: #4a4a4a; font-size: 1em;"
+        },
+        "hr": "border: none; border-top: 2px solid #7dd3fc; margin: 20px 0;",
+        "footnote": {
+            "ref": "color: #0ea5e9; text-decoration: none; font-size: 0.9em;",
+            "backref": "color: #0ea5e9; text-decoration: none; font-size: 0.9em;"
+        }
+    }
+}

@@ -5,6 +5,7 @@ import { CreateFontModal } from './CreateFontModal';
 import { CreateBackgroundModal } from './CreateBackgroundModal'; // 添加导入
 import { ConfirmModal } from './ConfirmModal';
 import { TemplatePreviewModal }  from './templatePreviewModal'; // 添加导入
+import { WeChatAccountModal } from './wechat/WeChatAccountModal'; // 添加导入
 export class MPSettingTab extends PluginSettingTab {
     plugin: MPPlugin; // 修改插件类型以匹配类名
     private expandedSections: Set<string> = new Set();
@@ -56,6 +57,7 @@ export class MPSettingTab extends PluginSettingTab {
         this.createSection(containerEl, '基本选项', el => this.renderBasicSettings(el));
         this.createSection(containerEl, '模板选项', el => this.renderTemplateSettings(el));
         this.createSection(containerEl, '背景选项', el => this.renderBackgroundSettings(el));
+        this.createSection(containerEl, '微信公众号', el => this.renderWeChatSettings(el));
     }
 
     private renderBasicSettings(containerEl: HTMLElement): void {
@@ -501,6 +503,94 @@ export class MPSettingTab extends PluginSettingTab {
                             await this.plugin.settingsManager.addCustomBackground(newBackground);
                             this.display();
                             new Notice('背景已创建');
+                        }
+                    ).open();
+                }));
+    }
+
+    private renderWeChatSettings(containerEl: HTMLElement): void {
+        const accounts = this.plugin.settingsManager.getWeChatAccounts();
+
+        // 说明文字
+        new Setting(containerEl)
+            .setDesc('配置你的微信公众号账号，用于一键发布文章到公众号草稿箱。');
+
+        // 账号列表
+        if (accounts.length === 0) {
+            new Setting(containerEl)
+                .setName('暂无公众号账号')
+                .setDesc('请点击下方按钮添加');
+        } else {
+            // 账号管理区域
+            const accountList = containerEl.createDiv('wechat-account-management');
+
+            accounts.forEach(account => {
+                const accountItem = accountList.createDiv('wechat-account-item');
+
+                // 构建描述文本
+                let desc = `AppID: ${account.appId}`;
+                if (account.isDefault) {
+                    desc += ' | 🌟 默认账号';
+                }
+
+                new Setting(accountItem)
+                    .setName(account.name)
+                    .setDesc(desc)
+                    .addExtraButton(btn => {
+                        if (!account.isDefault) {
+                            btn.setIcon('star')
+                                .setTooltip('设为默认')
+                                .onClick(async () => {
+                                    await this.plugin.settingsManager.setDefaultWeChatAccount(account.id);
+                                    this.display();
+                                    new Notice('已设置默认公众号');
+                                });
+                        }
+                    })
+                    .addExtraButton(btn =>
+                        btn.setIcon('pencil')
+                            .setTooltip('编辑')
+                            .onClick(() => {
+                                new WeChatAccountModal(
+                                    this.app,
+                                    async (updatedAccount) => {
+                                        await this.plugin.settingsManager.updateWeChatAccount(account.id, updatedAccount);
+                                        this.display();
+                                        new Notice('公众号账号已更新');
+                                    },
+                                    account
+                                ).open();
+                            }))
+                    .addExtraButton(btn =>
+                        btn.setIcon('trash')
+                            .setTooltip('删除')
+                            .onClick(() => {
+                                new ConfirmModal(
+                                    this.app,
+                                    '确认删除',
+                                    `确定要删除「${account.name}」吗？`,
+                                    async () => {
+                                        await this.plugin.settingsManager.removeWeChatAccount(account.id);
+                                        this.display();
+                                        new Notice('公众号账号已删除');
+                                    }
+                                ).open();
+                            }));
+            });
+        }
+
+        // 添加新账号按钮
+        new Setting(containerEl)
+            .addButton(btn => btn
+                .setButtonText('+ 添加公众号账号')
+                .setCta()
+                .onClick(() => {
+                    new WeChatAccountModal(
+                        this.app,
+                        async (newAccount) => {
+                            await this.plugin.settingsManager.addWeChatAccount(newAccount);
+                            this.display();
+                            new Notice('公众号账号已添加');
                         }
                     ).open();
                 }));
