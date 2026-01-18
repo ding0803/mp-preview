@@ -3,7 +3,7 @@
     "name": "MP Preview",
     "version": "1.0.6",
     "minAppVersion": "0.15.0",
-    "description": "Preview and convert Markdown files to MP format",
-    "author": "Yeban",
+    "description": "一键将 Obsidian 笔记转换为微信公众号格式的插件",
+    "author": "ding0803",
     "isDesktopOnly": true
 }
