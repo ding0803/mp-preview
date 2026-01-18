@@ -3,9 +3,14 @@ const fs = require('fs').promises;
 const path = require('path');
 const fetch = require('node-fetch');
 
-const token = process.env.GITHUB_TOKEN;
+let token = process.env.GITHUB_TOKEN;
+// Check if token is passed as --token argument
+const tokenIndex = process.argv.indexOf('--token');
+if (tokenIndex !== -1 && process.argv[tokenIndex + 1]) {
+  token = process.argv[tokenIndex + 1];
+}
 if (!token) {
-  console.error('Error: Please set GITHUB_TOKEN environment variable.');
+  console.error('Error: Please set GITHUB_TOKEN environment variable or pass --token argument.');
   process.exit(1);
 }
 
@@ -48,7 +53,12 @@ async function createRepoIfNeeded() {
       body: JSON.stringify({ name: repo, private: isPrivate })
     });
   } catch (err) {
-    if (err.response && err.response.message && err.response.message.includes('name already exists')) {
+    // Check if repo already exists (multiple possible error formats)
+    const alreadyExists =
+      (err.response && err.response.errors && err.response.errors.some(e => e.message && e.message.includes('already exists'))) ||
+      (err.response && err.response.message && err.response.message.includes('name already exists'));
+
+    if (alreadyExists) {
       console.log('Repository already exists, will upload to it.');
       return null;
     }

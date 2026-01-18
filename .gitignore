@@ -6,6 +6,7 @@ dist/
 main.js
 data.json
 styles.css
+
 # 操作系统文件
 .DS_Store
 Thumbs.db
@@ -13,6 +14,9 @@ Thumbs.db
 # IDE 配置
 .vscode/
 .idea/
+
+# Claude Code 配置（敏感文件）
+.claude/
 
 # 日志文件
 *.log
